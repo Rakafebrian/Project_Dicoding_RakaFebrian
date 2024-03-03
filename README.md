@@ -2,8 +2,6 @@
 
 ## Setup environment
 ```
-pip install pipenv->install pipenv->pipenv shell
-
 pip install numpy pandas matplotlib seaborn streamlit
 ```
 
