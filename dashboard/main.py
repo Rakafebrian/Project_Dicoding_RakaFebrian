@@ -115,75 +115,6 @@ st.header('E-Commerce Public Dataset Dicoding Project')
 
 # ====================================== Sub Header ======================================
 
-
-
-# ================================= Section Month Order ==================================
-
-st.subheader('Monthly Orders')
-highorder, loworder = st.columns(2)
-
-with highorder:
-    high_order_num = daily_orders_df['order_count'].max()
-    high_order_month=daily_orders_df[daily_orders_df['order_count'] == daily_orders_df['order_count'].max()]['order_approved_at'].values[0]
-    st.markdown(f"Highest orders in {high_order_month} : **{high_order_num}**")
-
-with loworder:
-    low_order = daily_orders_df['order_count'].min()
-    low_order_month=daily_orders_df[daily_orders_df['order_count'] == daily_orders_df['order_count'].min()]['order_approved_at'].values[0]
-    st.markdown(f"Lowest orders in {low_order_month} : **{low_order}**")
-
-fig, ax = plt.subplots(figsize=(16, 8))
-ax.plot(
-    daily_orders_df["order_approved_at"],
-    daily_orders_df["order_count"],
-    marker='*',
-    linewidth=2,
-    color="#90CAF9",
-)
-plt.xticks(rotation=45)
-ax.tick_params(axis='y', labelsize=20)
-ax.tick_params(axis='x', labelsize=15)
-
-st.pyplot(fig)
-
-# =============================== Section Customer Spend =================================
-
-st.subheader('Customer Spend')
-totalspend, averagespend = st.columns(2)
-
-with totalspend:
-    total_spend=spend_cust_df['total_spend'].sum()
-    formatted_total_spend = "%.2f" % total_spend
-    st.markdown(f"Total Spend : **{formatted_total_spend}**")
-
-with averagespend:
-    avg_spend=spend_cust_df['total_spend'].mean()
-    formatted_avg_spend = "%.2f" % avg_spend
-    st.markdown(f"Average Spend : **{formatted_avg_spend}**")
-
-plt.figure(figsize=(16, 8))
-min_total_spend = spend_cust_df['total_spend'].min()
-max_total_spend = spend_cust_df['total_spend'].max()
-
-plt.axhline(y=max_total_spend, color='purple', linestyle='-', linewidth=0.5, label=f'Max ({max_total_spend:.2f})')
-plt.axhline(y=min_total_spend, color='red', linestyle='-', linewidth=0.5, label=f'Min ({min_total_spend:.2f})')
-sns.barplot(
-    x='order_approved_at',
-    y='total_spend',
-    data=spend_cust_df,
-    #marker='o', 
-    #linewidth=2,
-    linestyle='-',
-    color="#90CAF9",
-    
-)
-plt.xlabel('')
-plt.ylabel('Total Spend')
-plt.xticks(fontsize=10, rotation=25)
-plt.yticks(fontsize=10)
-plt.legend()
-st.pyplot(plt)
-
 # ================================ Most & Least Products =================================
 
 st.subheader("Most And Least Product")
@@ -343,3 +274,72 @@ with visualM:
                 that the highest monetary is the customer with the largest 
                 expenditure."""
             )
+
+# ================================= Section Month Order ==================================
+
+st.subheader('Monthly Orders')
+highorder, loworder = st.columns(2)
+
+with highorder:
+    high_order_num = daily_orders_df['order_count'].max()
+    high_order_month=daily_orders_df[daily_orders_df['order_count'] == daily_orders_df['order_count'].max()]['order_approved_at'].values[0]
+    st.markdown(f"Highest orders in {high_order_month} : **{high_order_num}**")
+
+with loworder:
+    low_order = daily_orders_df['order_count'].min()
+    low_order_month=daily_orders_df[daily_orders_df['order_count'] == daily_orders_df['order_count'].min()]['order_approved_at'].values[0]
+    st.markdown(f"Lowest orders in {low_order_month} : **{low_order}**")
+
+fig, ax = plt.subplots(figsize=(16, 8))
+ax.plot(
+    daily_orders_df["order_approved_at"],
+    daily_orders_df["order_count"],
+    marker='*',
+    linewidth=2,
+    color="#90CAF9",
+)
+plt.xticks(rotation=45)
+ax.tick_params(axis='y', labelsize=20)
+ax.tick_params(axis='x', labelsize=15)
+
+st.pyplot(fig)
+
+# =============================== Section Customer Spend =================================
+
+st.subheader('Customer Spend')
+totalspend, averagespend = st.columns(2)
+
+with totalspend:
+    total_spend=spend_cust_df['total_spend'].sum()
+    formatted_total_spend = "%.2f" % total_spend
+    st.markdown(f"Total Spend : **{formatted_total_spend}**")
+
+with averagespend:
+    avg_spend=spend_cust_df['total_spend'].mean()
+    formatted_avg_spend = "%.2f" % avg_spend
+    st.markdown(f"Average Spend : **{formatted_avg_spend}**")
+
+plt.figure(figsize=(16, 8))
+min_total_spend = spend_cust_df['total_spend'].min()
+max_total_spend = spend_cust_df['total_spend'].max()
+
+plt.axhline(y=max_total_spend, color='purple', linestyle='-', linewidth=0.5, label=f'Max ({max_total_spend:.2f})')
+plt.axhline(y=min_total_spend, color='red', linestyle='-', linewidth=0.5, label=f'Min ({min_total_spend:.2f})')
+sns.barplot(
+    x='order_approved_at',
+    y='total_spend',
+    data=spend_cust_df,
+    #marker='o', 
+    #linewidth=2,
+    linestyle='-',
+    color="#90CAF9",
+    
+)
+plt.xlabel('')
+plt.ylabel('Total Spend')
+plt.xticks(fontsize=10, rotation=25)
+plt.yticks(fontsize=10)
+plt.legend()
+st.pyplot(plt)
+
+
