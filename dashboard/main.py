@@ -5,7 +5,7 @@ import seaborn as sns
 from datetime import datetime
 import datetime as dt
 
-all_df = pd.read_csv(r'C:\xampp\htdocs\Py_File\Project_Dicoding\dashboard\all_data.csv')
+all_df = pd.read_csv('C:\xampp\htdocs\Py_File\Project_Dicoding\dashboard\all_data.csv')
 
 
 # mengubah type data str/object menjadi datetime
